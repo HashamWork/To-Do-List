@@ -1,0 +1,319 @@
+@mixin clearFixFloat{
+	&:after,&:before{
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+@mixin BorderBoxAll{
+	*,*:after,*:before{
+	-moz-box-sizing: border-box;
+	-ms-box-sizing : border-box;
+	-webkit-box-sizing: border-box;
+	 box-sizing: border-box;
+	}
+}
+@mixin MakeGrid($cols,$col_gap,$row_gap){
+	display: grid;
+	grid-template-columns: repeat(#{$cols},1fr);
+	grid-column-gap: $col_gap;
+	grid-row-gap: $row_gap;
+}
+
+@mixin BorderRadius($radius){
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	-webkit-border-radius: $radius;
+	 border-radius: $radius;
+}
+
+@mixin StyleForm{
+    fieldset{
+        border:1px solid #c8c8c8;
+        padding: 10px;
+        @include BorderRadius(10px);
+        font-family: 'Comfortaa', cursive;
+    }
+    input{
+        @include BorderRadius(0);
+        border:0;
+        outline: 0;
+        font-size: 20px;
+        border-bottom:1px solid #888;
+        width: 95%;
+        margin:5px 5px 10px 0;
+        height: 30px;
+        margin-bottom: 20px;
+        padding-left: 5px;
+        background: transparent;
+        &:focus{
+            border-bottom:2px solid #1117dc;
+        }
+    }
+    label{
+        font-family: 'Comfortaa', cursive;
+        font-family: 'Permanent Marker', cursive;
+        color: #000;
+    }
+    button{
+        @include BorderRadius(0);
+        display: block;
+        border: 0;
+        height: 35px;
+        margin:0 auto;
+        background: #10c1c1;
+        border:2px solid #859fc1;
+        @include BorderRadius(5px);
+        font-family: 'Comfortaa', cursive;
+        font-family: 'Permanent Marker', cursive;
+        cursor: pointer;
+        &:hover{
+            background: #888;
+            // border-color:;
+        }
+    }
+
+}
+@mixin animateFrom{
+    .animateFrom{
+        animation: FilpForm 400ms ease-out 200ms 1 forwards,
+                   shakeFrom 300ms ease-in-out 600ms 1 forwards,
+                   flyFrom 500ms ease-in-out 1000ms 1 forwards, ;
+        transform-origin: top left;
+        @keyframes FilpForm {
+            0%{
+               transform:rotate(0deg);
+            }
+            100%{
+                transform:rotate(90deg);
+            }
+        }
+        @keyframes shakeFrom {
+            0%{
+                transform: rotate(95deg);
+            }
+            50%{
+                transform: rotate(85deg);
+            }
+            100%{
+                transform: rotate(90deg);
+            }            
+        }
+        @keyframes flyFrom {
+            0%{
+                transform:translateY(0) rotate(90deg);
+            }
+            100%{
+                transform:translateY(400%) rotate(90deg);
+            }
+        }
+    }
+}
+@mixin StyleCancleButton{
+    .frame_button,.Left_frame{
+        position: absolute;
+        bottom:10px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+        background: transparent;
+        border: 2px solid rgb(219, 187, 187);
+        @include BorderRadius(50%);
+        transform: translateY(100px);
+        .cancle_button,.Left_button{
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 30px;
+            height: 30px;
+            overflow: visible;
+            background: #5e5151;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 2px;
+            transform: rotateZ(45deg);
+            cursor: pointer;
+            @include BorderRadius(50%);
+            span{
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+                background: #fff;
+            }
+         }
+         .Left_button{
+            background: #d22525;
+            top: 8px;
+            left: 8px;
+         }
+    }
+    .Left_frame{
+        border: 2px solid red;
+        left:calc(50% - 21px);
+        width: 50px;
+        height: 50px;
+     }
+    .translate_Up{
+        animation: MoveUp 300ms ease-in-out 100ms 1 forwards;
+
+        @keyframes MoveUp {
+            0%{
+               transform: translateY(100px);
+            }
+            100%{
+               transform: translateY(0px);
+            }
+        }
+    }
+    .translate_Back{
+        animation: MoveDown 300ms ease-in-out 100ms 1 forwards;
+
+        @keyframes MoveDown {
+            0%{
+               transform: translateY(0px);
+            }
+            100%{
+               transform: translateY(100px);
+            }
+        }
+    }
+}
+@mixin StyleSaveButton{
+    .frame,.Right_frame{
+        position: absolute;
+        bottom:10px;
+        right: 20px;
+        width: 45px;
+        height : 45px;
+        background: transparent;
+        border: 1px solid #09c;
+        padding:11px;
+        cursor: pointer;
+        transform: translateY(100px);
+        @include BorderRadius(50%);
+        .save_button,.Right_button{
+                position: absolute;
+                margin: auto;
+                top: 13px;
+                width: 20px;
+                height: 10px;
+                transform: rotate(45deg);
+                cursor: pointer;
+                border-bottom: 3px solid #09c;
+                border-left: 3px solid #09c;
+                background: #fff;
+                transform: rotate(-45deg);
+        }
+    }
+}
+
+@mixin ListPage{
+    position: absolute;
+    top: 0;
+    left: 416px;
+    width: 100vw;
+    height: 100vh;
+    background: #d22525;
+    cursor: initial;
+    z-index: 100;
+    transform: translateY(-100%);
+    form{
+        overflow: hidden;
+        position: absolute;
+        top: 40px;
+        left: 123px;
+        width: 50;
+        width: 80%;
+        .saveList{
+            width: 30px;
+            height: 30px;
+            right: 0;
+            transform: rotate(180deg);
+            position: absolute;
+            background: #8a5050;
+            top: calc(50% - 15px);
+            border-radius: 50%;
+            padding:9px;
+            cursor: pointer;
+            transform: translate(100%) rotate(90deg);
+            animation: ShiftLeft 400ms ease-in 100ms 1 forwards;
+            div{
+                margin: auto;
+                width: 16px;
+                height: 8px;
+                border-bottom: 3px solid #fff;
+                border-left: 3px solid #fff;
+            }
+
+        }
+        .ShiftLeft{
+            animation: ShiftandRotateToLeft 200ms ease-in 100ms 1 forwards;
+            @keyframes ShiftandRotateToLeft {
+                0%{
+                    transform: translateX(100%)  rotate(90deg);
+                }
+                100%{
+                    transform: translateX(calc(0% - 5px)) rotate(-45deg);
+                }
+            }
+       }
+        input{
+            width: 100%;
+            height: 40px;
+            font-size: 30px;
+
+        }
+    }
+    .ListHeading{
+        overflow: auto;
+        height: calc(100vh - 102px);
+        width: calc(100vw - 56px);
+        background: #211818;
+        h1{
+            color: red;
+        padding: 10px;
+        background: darkred;
+        }
+        ul{
+            li{
+                position: relative;
+                color: #902727;
+                text-align: left;
+                padding: 15px;
+                padding-left: 5px;
+                background: #fff;
+                border-bottom: 1px solid #aaaa;
+                .TaskDone{
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    right: 5px;
+                    background: #8a5050;
+                    top: calc(50% - 15px);
+                    border-radius: 50%;
+                    padding: 9px;
+                    cursor: pointer;
+                    div{
+                        margin: auto;
+                        width: 16px;
+                        height: 8px;
+                        border-bottom: 3px solid #fff;
+                        border-left: 3px solid #fff;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+    .up_arrow{
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 50px;
+        left: 40px;
+        border-top: 1px solid;
+        border-left: 1px solid;
+        transform: translateY;
+        transform: rotateZ(45deg);
+    }
+}
